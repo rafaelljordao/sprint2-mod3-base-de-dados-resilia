@@ -8,12 +8,6 @@ select * from `fac_soft`;
 select * from `fac_tech`;
 select * from `turmas`;
 
--- alteração do id do joão de 0 para 10
-
-update entregas
-set id_alunos = 10
-where id = 1000;
-
 -- criaçao das tabelas
 
 create TABLE `turmas` (
