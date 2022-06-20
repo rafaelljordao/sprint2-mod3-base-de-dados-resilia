@@ -2,12 +2,6 @@ create database `resilia`;
 
 use `resilia`;
 
-select * from `alunos`;
-select * from `entregas`;
-select * from `fac_soft`;
-select * from `fac_tech`;
-select * from `turmas`;
-
 -- criaçao das tabelas
 
 create TABLE `turmas` (
@@ -92,6 +86,14 @@ INSERT INTO fac_soft(id,nome,frente,id_turmas) VALUES (103,'Bruna','soft','20220
 
 INSERT INTO fac_tech(id,nome,frente,id_turmas) VALUES (102,'Leo','tech','20220101');
 INSERT INTO fac_tech(id,nome,frente,id_turmas) VALUES (104,'Jarros','tech','20220201');
+
+-- selecionando as tabelas
+
+select * from `alunos`;
+select * from `entregas`;
+select * from `fac_soft`;
+select * from `fac_tech`;
+select * from `turmas`;
 
 -- QUERY 1
 
