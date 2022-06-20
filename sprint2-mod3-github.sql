@@ -4,45 +4,45 @@ use `resilia`;
 
 -- criaçao das tabelas
 
-create TABLE `turmas` (
-	`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+CREATE TABLE `turmas` (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(255),
-    `id_facilitador_soft` int,
+    `id_facilitador_soft` INT,
     `id_facilitador_tech` INT,
     `curso` VARCHAR(255)
-);
+)
 
-create TABLE `alunos` (
-	`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+CREATE TABLE `alunos` (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `Nome` VARCHAR(255),
-    `id_turmas` int,
+    `id_turmas` INT,
     `CPF` VARCHAR(11),
     `Email` VARCHAR(255),
-    `Data_de_Nascimento` date,
+    `Data_de_Nascimento` DATE,
     `Telefone` VARCHAR(15)
-);
+)
 
-create TABLE `fac_soft` (
-	`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+CREATE TABLE `fac_soft` (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `Nome` VARCHAR(255),
-	`frente` VARCHAR(50),
-    `id_turmas` int
-);
+    `frente` VARCHAR(50),
+    `id_turmas` INT
+)
 
-create TABLE `fac_tech` (
-	`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+CREATE TABLE `fac_tech` (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `Nome` VARCHAR(255),
-	`frente` VARCHAR(4),
-    `id_turmas` int
-);
+    `frente` VARCHAR(4),
+    `id_turmas` INT
+)
 
-create TABLE `entregas` (
-	`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+CREATE TABLE `entregas` (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `Link_repositorio` VARCHAR(255),
-	`Modulo_projeto` VARCHAR(50),
-    `id_alunos` int,
+    `Modulo_projeto` VARCHAR(50),
+    `id_alunos` INT,
     `Conceito` VARCHAR(255)
-);
+)
 
 -- populando as tabelas
 
@@ -97,39 +97,55 @@ select * from `turmas`;
 
 -- QUERY 1
 
-select alunos.id, alunos.nome, entregas.conceito
-from entregas
-inner join alunos on entregas.id_alunos = alunos.id
-where conceito = 'provou seu diferencial' or conceito = 'pronto';
+SELECT 
+    alunos.id, alunos.nome, entregas.conceito
+FROM
+    entregas
+        INNER JOIN
+    alunos ON entregas.id_alunos = alunos.id
+WHERE
+    conceito = 'provou seu diferencial'
+        OR conceito = 'pronto';
 
 -- QUERY 2
 
 -- turma 1 (id = 20220101)
-select id_turmas,
-count(id)
-from alunos
-group by id_turmas
-having id_turmas = 20220101;
+SELECT 
+    id_turmas, COUNT(id)
+FROM
+    alunos
+GROUP BY id_turmas
+HAVING id_turmas = 20220101;
 
 -- turma 2 (id = 20220201)
-select id_turmas,
-count(id)
-from alunos
-group by id_turmas
-having id_turmas = 20220201;
+SELECT 
+    id_turmas, COUNT(id)
+FROM
+    alunos
+GROUP BY id_turmas
+HAVING id_turmas = 20220201;
 
 -- QUERY 3
 -- nessa realmente não tem nenhum aluno com esses conceitos, por isso a tabela veio vazia
 
-select alunos.id, alunos.nome, entregas.conceito
-from entregas
-inner join alunos on entregas.id_alunos = alunos.id
-where conceito = 'ainda não está pronto' or conceito = 'chegando lá';
+SELECT 
+    alunos.id, alunos.nome, entregas.conceito
+FROM
+    entregas
+        INNER JOIN
+    alunos ON entregas.id_alunos = alunos.id
+WHERE
+    conceito = 'ainda não está pronto'
+        OR conceito = 'chegando lá'
 
 -- QUERY 4
 
-select alunos.id_turmas, entregas.conceito, count(id_turmas)
-from entregas
-inner join alunos on entregas.id_alunos = alunos.id
-where conceito = 'provou seu diferencial'
-group by id_turmas;
+SELECT 
+    alunos.id_turmas, entregas.conceito, COUNT(id_turmas)
+FROM
+    entregas
+        INNER JOIN
+    alunos ON entregas.id_alunos = alunos.id
+WHERE
+    conceito = 'provou seu diferencial'
+GROUP BY id_turmas;
